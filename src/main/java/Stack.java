@@ -8,35 +8,45 @@
 
 public class Stack {
 
-    private int[] elements;
+    private String[] elements;
     private int lastIndex;
 
     public Stack() {
         lastIndex = -1;
-        elements = new int[20];
+        elements = new String[20];
     }
 
 
     // This method is used to get an element from the top of Stack without removing it.
-    public int peek() {
-
-
-        return 1;
+    public String peek() {
+        if (isEmpty()) {
+            return null;
+        }
+        return elements[lastIndex];
     }
 
     // This method is used to get an element from the top of Stack and removing it.
-    public int pop() {
-        return 1;
+    public String pop() {
+        if (isEmpty()) {
+            return null;
+        }
+        String element = elements[lastIndex];
+        elements[lastIndex] = null;
+        lastIndex--;
+        return element;
+
 
     }
 
     // This method is used to add element on the top of Stack.
-    public int push(int element) {
+    public String push(String element) {
         if (isFull()) {
             increaseSizeOfArray();
         }
+        elements[lastIndex + 1] = element;
+        lastIndex++;
+        return elements[lastIndex];
 
-        return 1;
 
     }
 
@@ -57,9 +67,9 @@ public class Stack {
     }
 
     private void increaseSizeOfArray() {
-        int[] temporary = new int[elements.length];
+        String[] temporary = new String[elements.length];
         System.arraycopy(elements, 0, temporary, 0, elements.length);
-        elements = new int[elements.length + 20];
+        elements = new String[elements.length + 20];
         System.arraycopy(temporary, 0, elements, 0, temporary.length);
     }
 

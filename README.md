@@ -1,7 +1,7 @@
 <h1 align='center'>My implementation of Stack in Java </h1>
 <h6 align='center'>Technologies: <br>
 <img src="https://img.shields.io/badge/Java-ED8B00?style=plastic&logo=java&logoColor=white">
-<img src="https://badges.pufler.dev/visits/JaneckN/weatherapp">
+<img src="https://badges.pufler.dev/visits/JaneckN/stack">
 </h6>
 
 
