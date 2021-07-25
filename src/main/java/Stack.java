@@ -6,49 +6,52 @@
  */
 
 
-public class Stack {
+public class Stack<T> {
 
-    private String[] elements;
+    private T[] elements;
     private int lastIndex;
 
     public Stack() {
         lastIndex = -1;
-        elements = new String[20];
+        elements = (T[]) new Object[10];
     }
 
 
     // This method is used to get an element from the top of Stack without removing it.
-    public String peek() {
+    public T peek() {
         if (isEmpty()) {
             return null;
         }
         return elements[lastIndex];
     }
 
+
     // This method is used to get an element from the top of Stack and removing it.
-    public String pop() {
+    public T pop() {
         if (isEmpty()) {
             return null;
         }
-        String element = elements[lastIndex];
+        T element = elements[lastIndex];
         elements[lastIndex] = null;
         lastIndex--;
+
+        if (isOversize()) {
+            elements = decreaseSizeOfArray();
+        }
         return element;
-
-
     }
 
+
     // This method is used to add element on the top of Stack.
-    public String push(String element) {
+    public T push(T element) {
         if (isFull()) {
-            increaseSizeOfArray();
+            elements = increaseSizeOfArray();
         }
         elements[lastIndex + 1] = element;
         lastIndex++;
         return elements[lastIndex];
-
-
     }
+
 
     public boolean isEmpty() {
         if (lastIndex == -1) {
@@ -59,18 +62,36 @@ public class Stack {
     }
 
     public boolean isFull() {
-        if (lastIndex == elements.length) {
+        return lastIndex + 1 == elements.length;
+    }
+
+
+    private boolean isOversize() {
+        if (lastIndex > 16 && elements.length / (lastIndex + 2) >= 2) {
             return true;
         } else {
             return false;
         }
     }
 
-    private void increaseSizeOfArray() {
-        String[] temporary = new String[elements.length];
-        System.arraycopy(elements, 0, temporary, 0, elements.length);
-        elements = new String[elements.length + 20];
-        System.arraycopy(temporary, 0, elements, 0, temporary.length);
+    private T[] increaseSizeOfArray() {
+        T[] temporary = (T[]) new Object[lastIndex + 10];
+        for (int i = 0; i <= lastIndex; i++) {
+            temporary[i] = elements[i];
+        }
+        return temporary;
+    }
+
+    private T[] decreaseSizeOfArray() {
+        T[] temporary = (T[]) new Object[lastIndex + 20];
+        for (int i = 0; i <= lastIndex; i++) {
+            temporary[i] = elements[i];
+        }
+        return temporary;
+    }
+
+    public int getLastIndex() {
+        return lastIndex;
     }
 
 

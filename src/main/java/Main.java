@@ -1,3 +1,4 @@
+
 /**
  * ... comment class...
  *
@@ -10,11 +11,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Stack stack = new Stack();
-        System.out.println(stack.isEmpty());
-        System.out.println(stack.push("Maniek"));
-        System.out.println(stack.isEmpty());
 
+        Stack<Integer> stack = new Stack<>();
+        System.out.println(stack.isEmpty());
+        System.out.println(stack.push(1));
+        System.out.println(stack.isEmpty());
+        System.out.println(stack.peek());
+        System.out.println(stack.isEmpty());
+        System.out.println(stack.pop());
+        System.out.println(stack.isEmpty());
+        System.out.println(stack.pop());
+        for (int i = 0; i < 70; i++) {
+            stack.push(i);
+        }
+        System.out.println(stack.peek());
+        for (int i = 0; i < 70; i++) {
+            stack.pop();
+        }
+        System.out.println(stack.peek());
 
 
     }
